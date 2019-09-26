@@ -27,5 +27,6 @@ searchUser.addEventListener('keyup', (e) => {
   } else {
     // Clear UI
     ui.clearProfile();
+   // Added a new commented line here. Let's see if this works or not.
   }
 })
