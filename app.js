@@ -1,6 +1,5 @@
 /**
  * app.js is basically the expert view where you create a your test cases.
- * 
  */
 
 
@@ -15,6 +14,7 @@ const searchUser = document.getElementById("searchUser");
 // search input even listener
 searchUser.addEventListener('keyup', (e) => {
   // Get input text
+  ui.clearNoUserFoundAlert();
   const userText = e.target.value;
   if (userText !== '') {
     github.getUser(userText) // Mke http call
@@ -23,8 +23,8 @@ searchUser.addEventListener('keyup', (e) => {
           // show alert
           ui.showAlert('User not found.', 'alert alert-danger');
         } else { // show profile
-          ui.clearNoUserFoundAlert();
           ui.showProfile(data.profile);
+          ui.showRepos(data.repos);
         }
       })
   } else {
