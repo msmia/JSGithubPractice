@@ -1,3 +1,9 @@
+/**
+ * app.js is basically the expert view where you create a your test cases.
+ * 
+ */
+
+
 // Init GitHub class
 const github = new GitHub();
 const ui = new UI();
@@ -11,22 +17,17 @@ searchUser.addEventListener('keyup', (e) => {
   // Get input text
   const userText = e.target.value;
   if (userText !== '') {
-    // make http call
-    github.getUser(userText)
+    github.getUser(userText) // Mke http call
       .then(data => {
         if (data.profile.message === 'Not Found') {
           // show alert
-          let alert = document.getElementsByClassName('alert alert-danger')[0];
-          console.log(alert.innerHTML);
           ui.showAlert('User not found.', 'alert alert-danger');
-        } else {
-          // show profile
-          ui.showProfile(data.profile)
+        } else { // show profile
+          ui.clearNoUserFoundAlert();
+          ui.showProfile(data.profile);
         }
       })
   } else {
-    // Clear UI
-    ui.clearProfile();
-   // Added a new commented line here. Let's see if this works or not.
+    ui.clearProfile();  // Clear UI
   }
 })

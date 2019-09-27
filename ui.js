@@ -1,3 +1,8 @@
+/**
+ * UI class should have all the functions realted to the UI. 
+ * 
+ */
+
 class UI {
   constructor() {
     this.profile = document.getElementById('profile');
@@ -35,17 +40,23 @@ class UI {
   }
   // Show alert
   showAlert(msg, cls) {
-    // console.log(cls)
-    // if (document.getElementsByClassName('alert alert-danger')[0] === 'User not found.') {
-    //   document.getElementsByClassName('alert alert-danger')[0].remove();
-    //   console.log("Not found");
-    // } else {
+    const firstAlert = document.getElementsByClassName(cls);
+    // Only show one alert "user not found"
+    if (firstAlert.length < 1) {
       const div = document.createElement('div');
       div.className = cls;
       div.appendChild(document.createTextNode(msg));
       const container = document.querySelector('.searchContainer');
       const search = document.querySelector('.search')
       container.insertBefore(div, search);
-    //  }
+    }
+  }
+
+  // Clear alert
+  clearNoUserFoundAlert() {
+    const alert = document.getElementsByClassName('alert alert-danger');
+    if (alert.length === 1){
+      alert[0].remove();
+    }
   }
 }
